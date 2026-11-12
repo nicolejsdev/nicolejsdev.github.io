@@ -2,7 +2,7 @@
 
 Meu portfólio profissional como estudante de Engenharia de Software em transição para **DevOps e Cloud**. Reúne meus laboratórios de Linux, Docker e Kubernetes, o site que fiz para a Rústicos Diniz, meus certificados e um formulário para propostas.
 
-🌐 **Site:** [SEU-ENDERECO.cloudfront.net](https://SEU-ENDERECO.cloudfront.net)
+🌐 **Site:**  (https://nicolejsdev.github.io/)
 
 ## ✨ O que tem no site
 
