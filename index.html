@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nicole Chagas · Portfólio</title>
+<meta name="description" content="Portfólio de Nicole Chagas, estudante de Engenharia de Software com foco em DevOps.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Nicole Chagas · Portfólio">
+<meta property="og:description" content="Estudante de Engenharia de Software em transição para DevOps e Cloud. Laboratórios de Linux, Docker e Kubernetes.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B1626'/%3E%3Cpath d='M8 11l6 5-6 5' fill='none' stroke='%23BFDFFF' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M17 22h8' stroke='%237FB8F5' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0B1626;
+    --panel: #11233B;
+    --line: #1F3552;
+    --text: #DCE9F7;
+    --muted: #8FA6C2;
+    --baby: #BFDFFF;
+    --baby-soft: #EAF4FF;
+    --accent: #7FB8F5;
+    --ink: #1E3A5F;
+    --green: #8AE234;
+    --mono: "JetBrains Mono", ui-monospace, "Ubuntu Mono", Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: "Figtree", system-ui, sans-serif; line-height: 1.6; font-size: 1.05rem;
+    background-image: radial-gradient(circle at 80% -10%, rgba(127,184,245,.14), transparent 45%);
+    background-repeat: no-repeat;
+  }
+  h1, h2, h3 { font-family: "Bricolage Grotesque", "Figtree", system-ui, sans-serif; line-height: 1.1; margin: 0; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 1.5rem; }
+  section { padding: 4.5rem 0; }
+
+  /* Fundo com símbolos de DevOps e engenharia de software */
+  .bg-tech { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+  .bg-tech .sym { opacity: .09; color: var(--baby); }
+  .bg-tech text { font-family: var(--mono); fill: currentColor; }
+  .bg-tech .st { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* Navegação em formato de pipeline */
+  nav { padding: 1.25rem 0; border-bottom: 1px solid var(--line); }
+  nav .wrap { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  nav .brand { font-family: var(--mono); font-weight: 500; text-decoration: none; }
+  .pipeline { display: flex; align-items: center; gap: .5rem; font-size: .95rem; }
+  .pipeline a { display: flex; align-items: center; gap: .45rem; text-decoration: none; color: var(--muted); }
+  .pipeline a:hover { color: var(--baby); }
+  .pipeline .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green); }
+  .pipeline a.next .dot { background: transparent; border: 2px solid var(--baby); }
+  .pipeline .bar { width: 22px; height: 2px; background: var(--line); }
+
+  /* Hero */
+  .hero { padding: 4rem 0 3rem; }
+  .hero h1 { font-size: clamp(2.8rem, 9vw, 5.5rem); font-weight: 700; letter-spacing: -0.02em; }
+  .hero h1 span { color: var(--baby); }
+  .hero .lead { font-size: 1.25rem; color: var(--muted); max-width: 48ch; margin: 1.25rem 0 1.75rem; }
+  .btn {
+    display: inline-block; padding: .8rem 1.4rem; border-radius: 10px; font: inherit; font-weight: 600;
+    text-decoration: none; border: 2px solid var(--baby); background: var(--baby); color: var(--ink); cursor: pointer;
+  }
+  .btn:hover { background: var(--accent); border-color: var(--accent); }
+  .btn.ghost { background: transparent; color: var(--baby); margin-left: .5rem; }
+  .btn.ghost:hover { background: rgba(191,223,255,.1); }
+
+  /* Terminal estilo Ubuntu */
+  .term { margin-top: 3rem; background: #0A1220; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,.4); }
+  .term-bar { display: flex; justify-content: space-between; align-items: center; background: var(--panel); padding: .55rem .9rem; font-family: var(--mono); font-size: .85rem; color: var(--muted); }
+  .term-bar .ctl { display: flex; gap: .4rem; }
+  .term-bar .ctl i { width: 14px; height: 14px; border-radius: 50%; background: var(--line); display: block; }
+  .term-body { padding: 1.25rem 1.4rem 1.5rem; font-family: var(--mono); font-size: .95rem; line-height: 1.8; min-height: 230px; }
+  .u { color: var(--green); font-weight: 500; }
+  .p { color: var(--accent); font-weight: 500; }
+  .out { color: var(--text); margin-bottom: .35rem; }
+  .cursor { display: inline-block; width: .6em; height: 1.1em; background: var(--baby); vertical-align: text-bottom; animation: blink 1.1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .cursor { animation: none; } html { scroll-behavior: auto; } }
+
+  h2 { font-size: 2rem; margin-bottom: 1.5rem; }
+  .about p { max-width: 62ch; margin: 0 0 1rem; color: var(--text); }
+  .skills { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; list-style: none; margin: 1.5rem 0 0; }
+  .skills li { font-family: var(--mono); font-size: .88rem; background: var(--panel); border: 1px solid var(--line); color: var(--baby); padding: .25rem .8rem; border-radius: 6px; }
+
+  .sub { font-size: 1.2rem; margin: 2.5rem 0 .25rem; color: var(--baby); }
+  .certs { list-style: none; padding: 0; margin: .75rem 0 0; border-top: 1px solid var(--line); }
+  .certs li { display: flex; justify-content: space-between; gap: 1.5rem; padding: .9rem .25rem; border-bottom: 1px solid var(--line); }
+  .certs strong { display: block; font-weight: 600; }
+  .certs span { color: var(--muted); }
+  .certs span strong { color: var(--text); }
+  .certs time { font-family: var(--mono); font-size: .85rem; color: var(--accent); white-space: nowrap; }
+  @media (max-width: 560px) { .certs li { flex-direction: column; gap: .15rem; } }
+
+  .sec-lead { color: var(--muted); max-width: 60ch; margin: -.75rem 0 1.75rem; }
+  .sec-lead strong { color: var(--text); font-family: var(--mono); font-weight: 500; font-size: .95em; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 1.1rem; }
+  .card { display: flex; flex-direction: column; gap: .5rem; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 1.4rem; text-decoration: none; transition: transform .2s, border-color .2s; }
+  .card:hover { transform: translateY(-4px); border-color: var(--accent); }
+  .card .lab { font-family: var(--mono); font-size: .8rem; color: var(--accent); }
+  .card h3 { font-size: 1.3rem; }
+  .card p { margin: 0; color: var(--muted); flex: 1; }
+  .card .tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .5rem; }
+  .card .tags i { font-style: normal; font-family: var(--mono); font-size: .8rem; color: var(--baby); background: rgba(191,223,255,.08); border: 1px solid var(--line); padding: .1rem .55rem; border-radius: 6px; }
+  .card .go { font-family: var(--mono); font-size: .85rem; color: var(--baby); margin-top: .75rem; padding-top: .75rem; border-top: 1px solid var(--line); }
+  .more { margin: 2rem 0 0; display: flex; flex-wrap: wrap; gap: .75rem; }
+  .more .btn.ghost { margin-left: 0; }
+  @media (prefers-reduced-motion: reduce) { .card, .card:hover { transition: none; transform: none; } }
+
+  /* Ícones */
+  .ico { width: 34px; height: 34px; flex: none; color: var(--baby); fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .card .top { display: flex; justify-content: space-between; align-items: center; }
+  .card:hover .ico { color: var(--accent); }
+  .more .btn.ghost { display: inline-flex; align-items: center; gap: .6rem; }
+  .btn.ghost .ico { width: 22px; height: 22px; stroke-width: 2.2; }
+
+  /* Proposta: carta clara sobre o fundo escuro */
+  .letter {
+    position: relative; background: var(--baby-soft); color: var(--ink); border-radius: 14px;
+    padding: 2.25rem; box-shadow: 10px 10px 0 var(--accent);
+  }
+  .letter header { border-bottom: 2px solid var(--baby); padding-bottom: 1rem; margin-bottom: 1.5rem; }
+  .letter header h2 { margin: 0 0 .25rem; font-size: 1.75rem; }
+  .letter header p { margin: 0; color: #4A6280; }
+  .stamp { position: absolute; top: -14px; right: 1.5rem; background: var(--baby); color: var(--ink); padding: .3rem .9rem; border-radius: 999px; font-weight: 600; font-size: .9rem; transform: rotate(3deg); border: 2px solid var(--ink); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.25rem; }
+  .grid .full { grid-column: 1 / -1; }
+  @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } .letter { padding: 1.5rem; } }
+  label { display: block; font-weight: 600; margin-bottom: .3rem; font-size: .95rem; }
+  input, select, textarea { width: 100%; font: inherit; color: var(--ink); background: #fff; border: 2px solid var(--baby); border-radius: 8px; padding: .7rem .85rem; }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--ink); }
+  textarea { min-height: 130px; resize: vertical; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .letter .btn { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .letter .btn:hover { background: var(--accent); border-color: var(--accent); color: var(--ink); }
+  .actions { margin-top: 1.5rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+  #status { margin: 0; font-weight: 500; }
+  #status.ok { color: #1F6B49; }
+  #status.err { color: #B3401F; }
+
+  footer { padding: 2.5rem 0 3rem; color: var(--muted); font-size: .95rem; border-top: 1px solid var(--line); }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+</style>
+</head>
+<body>
+
+<!-- Símbolos reutilizáveis: pinguim, baleia, leme do Kubernetes, janela de navegador e gato -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-tux" viewBox="0 0 48 48">
+    <path d="M24 5c-6 0-9 5-9 12 0 4-4 8-4 15 0 6 5 11 13 11s13-5 13-11c0-7-4-11-4-15 0-7-3-12-9-12z"/>
+    <path d="M24 19c-4 0-7 5-7 11 0 5 3 8 7 8s7-3 7-8c0-6-3-11-7-11z"/>
+    <circle cx="21" cy="12" r="1.3" fill="currentColor"/><circle cx="27" cy="12" r="1.3" fill="currentColor"/>
+    <path d="M21.5 16l2.5 2.5 2.5-2.5z" fill="var(--accent)" stroke="var(--accent)"/>
+    <path d="M13 43h7M28 43h7" stroke="var(--accent)"/>
+  </symbol>
+  <symbol id="i-whale" viewBox="0 0 48 48">
+    <path d="M3 24h33c1-3 3-5 6-5 0 3-1 5-3 6 0 8-8 13-18 13C12 38 4 33 3 24z"/>
+    <rect x="9" y="17" width="6" height="5"/><rect x="16" y="17" width="6" height="5"/>
+    <rect x="23" y="17" width="6" height="5"/><rect x="16" y="10" width="6" height="5"/>
+    <circle cx="12" cy="30" r="1.2" fill="currentColor"/>
+  </symbol>
+  <symbol id="i-k8s" viewBox="0 0 48 48">
+    <polygon points="24,4 39.6,11.5 43.5,28.5 32.7,42 15.3,42 4.5,28.5 8.4,11.5"/>
+    <circle cx="24" cy="24" r="6"/>
+    <path d="M24 24V13M24 24l8.6-6.9M24 24l10.7 2.4M24 24l4.8 9.9M24 24l-4.8 9.9M24 24l-10.7 2.4M24 24l-8.6-6.9"/>
+  </symbol>
+  <symbol id="i-web" viewBox="0 0 48 48">
+    <rect x="4" y="8" width="40" height="32" rx="4"/>
+    <path d="M4 18h40"/>
+    <circle cx="10" cy="13" r="1.2" fill="currentColor"/><circle cx="15" cy="13" r="1.2" fill="currentColor"/>
+    <path d="M12 26h14M12 32h24"/>
+  </symbol>
+  <symbol id="i-cat" viewBox="0 0 24 24">
+    <path d="M4 4l4 3a9 9 0 0 1 8 0l4-3v8c0 5-3 8-8 8s-8-3-8-8z"/>
+    <circle cx="9" cy="12" r="1" fill="currentColor"/><circle cx="15" cy="12" r="1" fill="currentColor"/>
+    <path d="M11 15.5h2"/>
+  </symbol>
+</svg>
+
+<svg class="bg-tech" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="tech" width="260" height="260" patternUnits="userSpaceOnUse">
+      <g class="sym">
+        <text x="18" y="52" font-size="24">&lt;/&gt;</text>
+        <g class="st">
+          <circle cx="150" cy="30" r="5"/><circle cx="150" cy="72" r="5"/><circle cx="182" cy="42" r="5"/>
+          <path d="M150 35V67"/><path d="M182 47C182 58 150 52 150 60"/>
+        </g>
+        <path class="st" transform="translate(20 112)" d="M10 36h36a12 12 0 0 0 2-24 18 18 0 0 0-34-3 14 14 0 0 0-4 27z"/>
+        <g class="st" transform="translate(150 108)">
+          <polygon points="20,0 40,10 40,32 20,42 0,32 0,10"/>
+          <path d="M20 21L40 10M20 21L0 10M20 21V42"/>
+        </g>
+        <text x="86" y="178" font-size="26">{ }</text>
+        <path class="st" transform="translate(206 200)" d="M-24 0C-24-14-4-14 0 0 4 14 24 14 24 0 24-14 4-14 0 0-4 14-24 14-24 0z"/>
+        <text x="20" y="232" font-size="22">&gt;_</text>
+        <g class="st" transform="translate(112 228)">
+          <circle r="11" stroke-width="6" stroke-dasharray="4 3.2"/><circle r="5"/>
+        </g>
+        <text x="170" y="160" font-size="14">yml</text>
+      </g>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#tech)"/>
+</svg>
+
+<nav aria-label="Principal">
+  <div class="wrap">
+    <a class="brand" href="#top">nicole@tuf:~$</a>
+    <div class="pipeline">
+      <a href="#sobre"><span class="dot"></span>Sobre</a><span class="bar"></span>
+      <a href="#projetos"><span class="dot"></span>Projetos</a><span class="bar"></span>
+      <a class="next" href="#proposta"><span class="dot"></span>Proposta</a>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <h1>Nicole <span>Chagas</span></h1>
+      <p class="lead">Estudante de Engenharia de Software, construindo meu caminho para atuar como DevOps.</p>
+      <a class="btn" href="#proposta">Enviar uma proposta</a>
+      <a class="btn ghost" href="#projetos">Ver projetos</a>
+
+      <div class="term" aria-label="Terminal decorativo">
+        <div class="term-bar">
+          <span>nicole@tuf: ~</span>
+          <span class="ctl"><i></i><i></i><i></i></span>
+        </div>
+        <div class="term-body" id="term">
+          <div class="line" data-cmd="cat objetivo.txt"></div>
+          <div class="out">Estudante de Engenharia de Software. Em transição para DevOps e Cloud.</div>
+          <div class="line" data-cmd="ls estudos/"></div>
+          <div class="out">linux &nbsp;bash &nbsp;redes &nbsp;aws &nbsp;docker &nbsp;kubernetes</div>
+          <div class="line" data-cmd="echo $DISPONIVEL"></div>
+          <div class="out">devops júnior, cloud, infraestrutura</div>
+          <div class="line" data-cmd=""></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre" class="about">
+    <div class="wrap">
+      <h2>Sobre mim</h2>
+      <p>Sou estudante de Engenharia de Software e profissional de tecnologia em transição de carreira para DevOps e Cloud Computing, com foco em infraestrutura, automação e operações de TI.</p>
+      <p>Atualmente, estou aprofundando meus conhecimentos em Linux, redes, administração de sistemas, Bash scripting e computação em nuvem, por meio de cursos e projetos práticos. Venho construindo meu portfólio no GitHub, documentando laboratórios e projetos com Linux, redes e scripts. Já trabalho com Docker e agora estou avançando em Kubernetes e automação de infraestrutura.</p>
+      <p>Também tenho experiência anterior em suporte técnico na área de telecomunicações, que me deu familiaridade com ambientes técnicos e com a resolução de problemas.</p>
+      <p>Busco uma oportunidade para iniciar minha atuação profissional nessas áreas, aplicar o que aprendi e continuar evoluindo tecnicamente. Tenho infraestrutura própria para trabalho remoto, com setup dedicado e conexão estável à internet.</p>
+
+      <h3 class="sub">Áreas de interesse</h3>
+      <ul class="skills">
+        <li>DevOps júnior</li><li>Cloud Computing e AWS</li><li>Infraestrutura e operações de TI</li><li>Automação e administração Linux</li>
+      </ul>
+
+      <h3 class="sub">Certificados</h3>
+      <ul class="certs">
+        <li><span><strong>Docker Essentials</strong> LinuxTIPS</span><time>out. 2026</time></li>
+        <li><span><strong>Linux Fundamentos</strong> FIAP</span><time>out. 2026</time></li>
+        <li><span><strong>DevOps &amp; Agile Culture</strong> FIAP</span><time>out. 2026</time></li>
+        <li><span><strong>DevOps Essentials</strong> 4Linux</span><time>mai. 2026</time></li>
+        <li><span><strong>AWS Technical Essentials (Português)</strong> Amazon Web Services</span><time>dez. 2025</time></li>
+        <li><span><strong>DevOps: Explorando conceitos, comandos e scripts no Linux CLI</strong> Alura</span><time>nov. 2025</time></li>
+        <li><span><strong>JavaScript: Fundamentos para Desenvolvimento Web Interativo</strong> IFRS</span><time>jul. 2025</time></li>
+        <li><span><strong>Algoritmo e Lógica da Programação</strong> UniCesumar</span><time>jul. 2025</time></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="projetos">
+    <div class="wrap">
+      <h2>Projetos</h2>
+      <p class="sec-lead">Laboratórios práticos organizados em três repositórios: <strong>linux-labs</strong>, <strong>docker-labs</strong> e <strong>kubernetes-labs</strong>, além de um site real em produção. Em cada um, documento o passo a passo do que estudo.</p>
+      <div class="cards">
+        <a class="card" href="https://github.com/nicolejsdev/linux-labs">
+          <div class="top"><span class="lab">7 laboratórios</span><svg class="ico" aria-hidden="true"><use href="#i-tux"/></svg></div>
+          <h3>Linux Labs</h3>
+          <p>Fundamentos de Linux, usuários e permissões, processos, serviços com systemd, armazenamento, redes e Bash scripting.</p>
+          <span class="tags"><i>Linux</i><i>Bash</i><i>systemd</i></span>
+          <span class="go">ver repositório →</span>
+        </a>
+        <a class="card" href="https://github.com/nicolejsdev/docker-labs">
+          <div class="top"><span class="lab">4 laboratórios</span><svg class="ico" aria-hidden="true"><use href="#i-whale"/></svg></div>
+          <h3>Docker Labs</h3>
+          <p>Fundamentos do Docker, o projeto HydraPing, orquestração com Docker Compose e persistência de dados com volumes.</p>
+          <span class="tags"><i>Docker</i><i>Compose</i><i>Volumes</i></span>
+          <span class="go">ver repositório →</span>
+        </a>
+        <a class="card" href="https://github.com/nicolejsdev/kubernetes-labs">
+          <div class="top"><span class="lab">1 laboratório</span><svg class="ico" aria-hidden="true"><use href="#i-k8s"/></svg></div>
+          <h3>Kubernetes Labs</h3>
+          <p>Aplicação real executada em um cluster Kind, com Deployment, Service, autorrecuperação de Pods e escalonamento.</p>
+          <span class="tags"><i>Kubernetes</i><i>Kind</i></span>
+          <span class="go">ver repositório →</span>
+        </a>
+        <a class="card" href="https://github.com/nicolejsdev/Rusticos-Diniz">
+          <div class="top"><span class="lab">site em produção</span><svg class="ico" aria-hidden="true"><use href="#i-web"/></svg></div>
+          <h3>Rústicos Diniz</h3>
+          <p>Catálogo digital de uma marcenaria, com formulário de orçamento e domínio próprio, publicado no GitHub Pages.</p>
+          <span class="tags"><i>HTML</i><i>CSS</i><i>JavaScript</i><i>GitHub Pages</i></span>
+          <span class="go">ver repositório →</span>
+        </a>
+      </div>
+      <p class="more">
+        <a class="btn ghost" href="https://github.com/nicolejsdev"><svg class="ico" aria-hidden="true"><use href="#i-cat"/></svg>Ver todos os repositórios no GitHub</a>
+      </p>
+    </div>
+  </section>
+
+  <section id="proposta">
+    <div class="wrap">
+      <form class="letter" id="proposal-form" action="https://formspree.io/f/xbgglrqw" method="POST">
+        <span class="stamp">Aberta a propostas</span>
+        <header>
+          <h2>Proposta de colaboração</h2>
+          <p>Preencha os campos e eu respondo em até 2 dias úteis.</p>
+        </header>
+        <div class="hp" aria-hidden="true">
+          <label for="gotcha">Não preencha este campo</label>
+          <input id="gotcha" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+        </div>
+        <div class="grid">
+          <div><label for="empresa">Empresa</label><input id="empresa" name="empresa" required></div>
+          <div><label for="nome">Seu nome</label><input id="nome" name="nome" required autocomplete="name"></div>
+          <div><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email"></div>
+          <div>
+            <label for="contrato">Tipo de contrato</label>
+            <select id="contrato" name="contrato">
+              <option>CLT</option><option>PJ</option><option>Estágio</option><option>Freelance</option><option>Ainda não definido</option>
+            </select>
+          </div>
+          <div class="full"><label for="mensagem">Sobre a oportunidade</label><textarea id="mensagem" name="mensagem" required></textarea></div>
+        </div>
+        <div class="actions">
+          <button class="btn" type="submit">Enviar proposta</button>
+          <p id="status" role="status"></p>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Nicole Chagas</span>
+    <span><a href="https://github.com/nicolejsdev">GitHub</a> · <a href="https://www.linkedin.com/in/nicole-chagas-a30a08259">LinkedIn</a></span>
+  </div>
+</footer>
+
+<script>
+  // Terminal: digita os comandos uma vez ao carregar a página
+  (function () {
+    const prompt = '<span class="u">nicole@tuf</span>:<span class="p">~</span>$ ';
+    const body = document.getElementById('term');
+    const items = Array.from(body.children);
+    const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const cursor = '<span class="cursor"></span>';
+
+    if (still) {
+      items.forEach(el => { if (el.dataset.cmd !== undefined && el.classList.contains('line')) el.innerHTML = prompt + el.dataset.cmd; });
+      items[items.length - 1].innerHTML = prompt + cursor;
+      return;
+    }
+    items.forEach(el => { el.style.visibility = 'hidden'; });
+    let i = 0;
+    function next() {
+      if (i >= items.length) return;
+      const el = items[i++];
+      el.style.visibility = 'visible';
+      if (!el.classList.contains('line')) return setTimeout(next, 250);
+      const cmd = el.dataset.cmd;
+      if (!cmd) { el.innerHTML = prompt + cursor; return; }
+      let n = 0;
+      (function type() {
+        el.innerHTML = prompt + cmd.slice(0, n) + cursor;
+        if (n++ < cmd.length) return setTimeout(type, 55);
+        el.innerHTML = prompt + cmd;
+        setTimeout(next, 300);
+      })();
+    }
+    setTimeout(next, 500);
+  })();
+
+  // Formulário de proposta
+  const form = document.getElementById('proposal-form');
+  const status = document.getElementById('status');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.className = '';
+    status.textContent = 'Enviando...';
+    try {
+      const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+      if (!res.ok) throw new Error();
+      form.reset();
+      status.className = 'ok';
+      status.textContent = 'Proposta enviada. Obrigada!';
+    } catch {
+      status.className = 'err';
+      status.textContent = 'Não foi possível enviar. Tente de novo mais tarde.';
+    }
+  });
+</script>
+</body>
+</html>
